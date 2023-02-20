@@ -3,8 +3,7 @@ You can upload your project and brag about it
 
 ## Software Architecture
 
-![아키텍처](https://user-images.githubusercontent.com/101189924/219960911-fa4776c2-84c6-47da-bcf5-3b07a491c40e.png)
-
+![아키텍처](https://user-images.githubusercontent.com/101189924/220031453-7a59bd19-6bbd-48fe-ba9b-17222891625b.png)
 
 ## Tech Stack
 
@@ -17,5 +16,4 @@ Area| Tech Stack|
  **DevOps** | <img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=nginx&logoColor=black"> <img src="https://img.shields.io/badge/gunicorn-499848?style=for-the-badge&logo=gunicorn&logoColor=black"> <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"> <img src="https://img.shields.io/badge/Amazon_EC2-FF9900?style=for-the-badge&logo=Amazon-EC2&logoColor=black">
   </div>
 
-## Our Team
-member
+ 
