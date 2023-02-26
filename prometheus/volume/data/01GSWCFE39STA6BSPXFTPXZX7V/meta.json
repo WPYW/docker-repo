@@ -1,0 +1,17 @@
+{
+	"ulid": "01GSWCFE39STA6BSPXFTPXZX7V",
+	"minTime": 1677052800000,
+	"maxTime": 1677060000000,
+	"stats": {
+		"numSamples": 894987,
+		"numSeries": 9911,
+		"numChunks": 11347
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01GSWCFE39STA6BSPXFTPXZX7V"
+		]
+	},
+	"version": 1
+}

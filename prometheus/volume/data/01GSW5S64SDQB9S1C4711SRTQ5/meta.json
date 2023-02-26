@@ -1,0 +1,17 @@
+{
+	"ulid": "01GSW5S64SDQB9S1C4711SRTQ5",
+	"minTime": 1677045719808,
+	"maxTime": 1677052800000,
+	"stats": {
+		"numSamples": 410907,
+		"numSeries": 2401,
+		"numChunks": 3294
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01GSW5S64SDQB9S1C4711SRTQ5"
+		]
+	},
+	"version": 1
+}

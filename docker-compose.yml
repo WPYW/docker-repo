@@ -1,6 +1,7 @@
 version: "3.7"
 services:
   backend:
+    container_name: backend
     build:
       context: ./backend-repo
       args:
@@ -9,23 +10,31 @@ services:
         DJANGO_CORS_ORIGIN_WHITELIST: "*"
     restart: unless-stopped
     # command: python backend/manage.py runserver 0.0.0.0:8000 # nomal start
-    command: sh -c "cd backend/ && gunicorn wpyw.wsgi:application --bind 0.0.0.0:8000" # gunicorn start
+    command: sh -c "cd backend/ && gunicorn wpyw.wsgi:application --bind 0:8000" # gunicorn start
     volumes:
       - ./backend-repo:/code
     ports:
       - 8000:8000
     env_file:
       - ./backend-repo/.env
-    depends_on:
-      - nginx
+    expose:
+      - 8000
+    networks:
+      - app-tier
   nginx:
     build:
       context: ./nginx
+    restart: unless-stopped
     volumes:
       - ./wpyw/static:/static
     ports:
       - 80:80
-
+    expose:
+      - 80
+    networks:
+      - app-tier
+    depends_on:
+      - backend
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -42,7 +51,7 @@ services:
     depends_on:
       - backend
   grafana:
-    image: grafana/grafana:8.5.5
+    image: grafana/grafana
     container_name: grafana
     restart: unless-stopped
     ports:
@@ -54,6 +63,7 @@ services:
     depends_on:
       - backend
       - prometheus
+
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node_exporter
@@ -65,7 +75,7 @@ services:
     networks:
       - app-tier
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:latest
+    image: gcr.io/cadvisor/cadvisor:v0.46.0
     container_name: cadvisor
     restart: unless-stopped
     ports:
