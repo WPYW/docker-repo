@@ -1,6 +1,7 @@
 version: "3.7"
 services:
   backend:
+    container_name: backend
     build:
       context: ./backend-repo
       args:
@@ -16,13 +17,36 @@ services:
       - 8000:8000
     env_file:
       - ./backend-repo/.env
-    depends_on:
-      - nginx
+    # depends_on:
+    #   - nginx
 
   nginx:
+    container_name: nginx
     build:
       context: ./nginx
     volumes:
-      - ./wpyw/static:/static
+      # - ./wpyw/static:/static
+      - build_folder:/var/www/frontend
     ports:
       - 80:80
+    depends_on:
+      - backend
+      - frontend
+
+  frontend:
+    container_name: frontend
+    restart: on-failure
+    build:
+      context: ./frontend-repo/
+      dockerfile: Dockerfile
+    volumes:
+      # hot reload를 위해 mount
+      - ./frontend-repo:/usr/src/next
+      - /usr/src/next/node_modules
+      - /usr/src/next/.next
+      - build_folder:/frontend/build
+    ports:
+      - 5173:5173
+
+volumes:
+  build_folder: null
